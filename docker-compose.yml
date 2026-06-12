@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  valkey-node-1:
+    image: valkey/valkey:latest
+    container_name: valkey-node-1
+    command: valkey-server --port 6379 --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes --protected-mode no
+    ports:
+      - "7001:6379"
+      - "17001:16379"
+    networks:
+      valkey-cluster-net:
+        ipv4_address: 172.20.0.11
+
+  valkey-node-2:
+    image: valkey/valkey:latest
+    container_name: valkey-node-2
+    command: valkey-server --port 6379 --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes --protected-mode no
+    ports:
+      - "7002:6379"
+      - "17002:16379"
+    networks:
+      valkey-cluster-net:
+        ipv4_address: 172.20.0.12
+
+  valkey-node-3:
+    image: valkey/valkey:latest
+    container_name: valkey-node-3
+    command: valkey-server --port 6379 --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes --protected-mode no
+    ports:
+      - "7003:6379"
+      - "17003:16379"
+    networks:
+      valkey-cluster-net:
+        ipv4_address: 172.20.0.13
+
+  valkey-node-4:
+    image: valkey/valkey:latest
+    container_name: valkey-node-4
+    command: valkey-server --port 6379 --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes --protected-mode no
+    ports:
+      - "7004:6379"
+      - "17004:16379"
+    networks:
+      valkey-cluster-net:
+        ipv4_address: 172.20.0.14
+
+  valkey-node-5:
+    image: valkey/valkey:latest
+    container_name: valkey-node-5
+    command: valkey-server --port 6379 --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes --protected-mode no
+    ports:
+      - "7005:6379"
+      - "17005:16379"
+    networks:
+      valkey-cluster-net:
+        ipv4_address: 172.20.0.15
+
+  valkey-node-6:
+    image: valkey/valkey:latest
+    container_name: valkey-node-6
+    command: valkey-server --port 6379 --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes --protected-mode no
+    ports:
+      - "7006:6379"
+      - "17006:16379"
+    networks:
+      valkey-cluster-net:
+        ipv4_address: 172.20.0.16
+
+networks:
+  valkey-cluster-net:
+    name: valkey-cluster-net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16

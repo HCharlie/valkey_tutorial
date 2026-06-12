@@ -1,0 +1,3 @@
+valkey
+numpy
+matplotlib
